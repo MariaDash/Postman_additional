@@ -212,3 +212,72 @@ pm.test("Your test name", function () {
 ```
 ##### 10. finding types of elements with Chai.js `.a` , `.instanceof`
 1)`.a`
+```
+var jsonData = pm.response.json();
+pm.test("Your test name", function () {     
+     pm.expect(jsonData.value).to.be.a('string');
+ })
+```
+or
+```
+var jsonData = pm.response.json();
+pm.test("Your test name", function () {     
+     pm.expect(jsonData.value).to.be.an('array');
+ })
+```
+2) `that.includes`
+```
+var jsonData = pm.response.json();
+pm.test("Your test name", function () {     
+     pm.expect(jsonData.value).to.be.an('array').that.includes({json_object});
+ })
+```
+or
+```
+var jsonData = pm.response.json();
+pm.test("Your test name", function () {     
+     pm.expect(jsonData.value).to.be.an('array').that.deep.includes({json_object});
+ })
+```
+3) `expect({a: 1}).to.have.property('a').that.is.a('number');`
+4) `instanceOf`
+Asserts that the target is an instance of the given constructor.
+```
+function Cat () { }
+
+expect(new Cat()).to.be.an.instanceof(Cat);
+expect([1, 2]).to.be.an.instanceof(Array);
+```
+object literal:
+```
+var cat ={
+     name:"Kitty",
+     year:1,
+     sleep: function(){
+          //sleeping code
+     }
+}
+```
+about constructor:
+```
+function Cat (name, year){
+    this.name=name;
+    this.year=year;
+    this.sleep=function(){
+    //sleeping code
+    }
+}
+var kitty - new Cat('Kitty',1);
+```
+`.instanceOf` check that `kitty` was made from constructor `Cat`
+
+Example of usage:
+```
+function Animal() {}
+function Rabbit() {}
+Rabbit prototype = Object.create(Animal.prototype);
+var rabbit = new Rabbit();
+alert(rabbit instanceOf Rabbit);
+alert(rabbit instanceOf Animal);
+alert(rabbit instanceOf Object);
+```
