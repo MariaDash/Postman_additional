@@ -111,7 +111,7 @@ pm.test("Body matches string", function () {
 1) `pm.response.to.have.jsonbody({jsonobject})` - test that response have a json body
 2) `pm.response.to.not.have.jsonbody({jsonobject})` - test that response not have a json body
 #### 2.3. From Chai.js
-1)eql,deep.equal,equal(see response.text)
+1)`eql,deep.equal,equal`(see response.text)
 ```
 pm.test("Your test name", function () {
      var jsonData = pm.response.json();
@@ -120,30 +120,93 @@ pm.test("Your test name", function () {
      key:"value"});
 });
 ```
-2) include, deep.include
+2) `include, deep.include`
 include tests that a part of a string, object , array is equal to smth:
 ```
 var jsonData = pm.response.json();
 pm.test("Body matches string", function () {
      pm.expect(jsonData.value).to.include("string_you_want_to_search");
  });
- ```
+```
  or search a part of object:
- ```
+```
  var jsonData = pm.response.json();
 pm.test("Body matches string", function () {
      pm.expect(jsonData.value).to.include({key="value"});
  });
- ```
+```
 deep.include tests the whole structure:
- ```
+```
  var jsonData = pm.response.json();
 pm.test("Body matches string", function () {
      pm.expect(jsonData.value).to.deep.include({key="value"});
  });
- ```
- 3)nested.include: for child objects
- {a:{b:['x','y']}}
- pm.expect(jsonData.a.b[1]).to.include('y');
- or
- pm.expect(jsonData.to.nested.include({'a.b[1]':'y'})
+```
+3)`nested.include`: for child objects
+```
+{a:{b:['x','y']}}
+pm.expect(jsonData.a.b[1]).to.include('y');
+```
+or
+```
+pm.expect(jsonData.to.nested.include({'a.b[1]':'y'})
+```
+4) `property`  - we test === (strictly) that the target has a property with given key
+```
+pm.test("Your test name", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData.value).to.have.property('a');
+ })
+```
+or
+```
+pm.test("Your test name", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData.value).to.have.property('a','value');
+ })
+```
+5) `deep.property`
+```
+pm.test("Your test name", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData.value1.value2).to.have.deep.property('a','value');
+ })
+```
+6) `nested.property` ( for objects and arrays)
+Add `.nested` earlier in the chain to enable dot- and bracket-notation when referencing nested properties.
+```
+expect({a: {b: ['x', 'y']}}).to.have.nested.property('a.b[1]');
+expect({a: {b: ['x', 'y']}}).to.have.nested.property('a.b[1]', 'y');
+```
+also I can use `nested.deep.property`
+7) check value type with `.property`
+.property changes the target of any assertions that follow in the chain to be the value of the property from the original target object.
+
+`expect({a: 1}).to.have.property('a').that.is.a('number');`
+```
+pm.test("Your test name", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData.value1.value2).to.have.deep.property('a','value').that.is.a.('number');
+ })
+```
+8) for comfortable reading add `.a`:
+```
+pm.test("Your test name", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData.value).to.have.a.property('a','value');
+ })
+```
+9) `keys`.     `all.keys`
+```
+pm.test("Your test name", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData.value).to.have.all.keys('value1','value2') 
+ })
+```
+or `any.keys`
+```
+pm.test("Your test name", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData.value).to.have.any.keys('value1','value2') 
+ })
+```
