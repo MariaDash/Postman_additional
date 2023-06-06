@@ -74,4 +74,29 @@ pm.test("assert", function () {
 ```
 ### 2. Tests for the body: JSON
 #### 2.1. From Postman snippets
-
+1)
+```
+pm.test("Your test name", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData.value).to.eql(100);
+});
+```
+2)
+```
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+```
+or
+```
+pm.test("Body is correct", function () {
+     pm.response.to.have.body({response_body_object});
+ });
+```
+3)
+```
+pm.test("Body matches string", function () {
+     pm.expect(pm.response.text()).to.include("string_you_want_to_search");
+ });
+#### 2.2. From  Sandbox API reference  
+1) `pm.response.to.have.jsonbody('')` - test that response have a json body
