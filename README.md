@@ -34,3 +34,6 @@ Note2:`\n` - shielding line break
 14) `pm.expect(pm.response.text()).to.not.be.empty`  - test that the text is not empty
 15) `pm.expect(pm.response.text()).to.match(/^string/)`  test matching with use of regexp
 16) `pm.expect(pm.response.text()).to.have.string("string")` === test we have string
+#### 1.4. From Node.js
+1) const assert = require("assert");
+
