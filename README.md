@@ -210,8 +210,8 @@ pm.test("Your test name", function () {
      pm.expect(jsonData.value).to.have.any.keys('value1','value2') 
  })
 ```
-##### 10. finding types of elements with Chai.js `.a` , `.instanceof`
-1)`.a`
+##### 10. Finding types of elements with Chai.js `.a` , `.instanceof`
+1)`.a` for number, string, object, array
 ```
 var jsonData = pm.response.json();
 pm.test("Your test name", function () {     
@@ -240,7 +240,7 @@ pm.test("Your test name", function () {
  })
 ```
 3) `expect({a: 1}).to.have.property('a').that.is.a('number');`
-4) `instanceOf`
+4) `instanceOf` for own created arrays, objects and own functions
 Asserts that the target is an instance of the given constructor.
 ```
 function Cat () { }
@@ -280,4 +280,102 @@ var rabbit = new Rabbit();
 alert(rabbit instanceOf Rabbit);
 alert(rabbit instanceOf Animal);
 alert(rabbit instanceOf Object);
+```
+### 3. Tests for arrays
+#### 3.1. Chai.js
+##### 1) 
+```
+var jsonData = pm.response.json();
+pm.test("Your test name", function () {     
+     pm.expect(jsonData.value).to.be.an('array')
+     })
+```
+extended:
+```
+var jsonData = pm.response.json();
+pm.test("Your test name", function () {     
+     pm.expect(jsonData.value).to.be.an('array').that.is.empty;
+     pm.expect(jsonData.value).to.be.an('array').that.is.not.empty;
+     pm.expect([1,2,3]).to.be.an('array').that.includes(2);
+     });
+```
+##### 2) `expect([1, 2]).to.be.an.instanceof(Array);`
+##### 3) `keys`.    
+`all.keys`
+```
+pm.test("Your test name", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData.value).to.have.all.keys('value1','value2') 
+ })
+```
+or `any.keys`
+```
+pm.test("Your test name", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData.value).to.have.any.keys('value1','value2') 
+ })
+```
+##### 4) `.members` only for arrays (any order but strictly ===)
+```
+pm.test("Your test name", function () {
+     pm.expect([1, 2, 3]).to.have.members([2, 1, 3]);
+ })
+```
+or `ordered.members`( testing the order strictly ===):
+```
+pm.test("Your test name", function () {
+     pm.expect([1, 2, 3]).to.have.ordered.members([1,2,3]);
+ })
+```
+or `include.members`( testing that member is included not strictly ==)
+```
+pm.test("Your test name", function () {
+     pm.expect([1, 2, 3]).to.include.members([1,2]);
+ })
+```
+or `include.deep.members` (not strictly ==, in child objects too)
+```
+pm.test("Your test name", function () {
+     pm.expect([1, 2, 3]).to.include.deep.members([1,2]);
+ })
+```
+##### 5) `.lengthOf`
+```
+pm.test("Your test name", function () {
+     pm.expect([1, 2, 3]).to.have.lengthOf(3);
+ })
+```
+or
+```
+// Recommended
+expect([1, 2, 3]).to.have.lengthOf(3);
+
+// Not recommended
+expect([1, 2, 3]).to.have.lengthOf.above(2);
+//more than
+expect([1, 2, 3]).to.have.lengthOf.below(4);
+//less than
+expect([1, 2, 3]).to.have.lengthOf.at.least(3);
+//more or equal
+expect([1, 2, 3]).to.have.lengthOf.at.most(3);
+//less or equal
+expect([1, 2, 3]).to.have.lengthOf.within(2,4);
+//the target is a number or a date greater than or equal to the given number or date start, and less than or equal to the given number or date finish respectively
+```
+##### 6) `null, empty, exist`
+```
+pm.expect(jsonData.companys).to.not.be.null;
+pm.expect(jsonData.companys).to.not.be.empty;
+pm.expect(jsonData.companys).to.exist;
+```
+##### 7) `eql`
+```
+pm.test("test order", function () {
+     pm.expect(jsonData.company[0].id_company).to.eql(99);
+     pm.expect(jsonData.company[0].name).to.eql('Cathalina');
+     pm.expect(jsonData.company[1].id_company).to.eql(86);
+     pm.expect(jsonData.company[1].name).to.eql('Angelina');
+ });
+```
+### 4. Tests for the body : string in JSON (Chai.js)
 ```
