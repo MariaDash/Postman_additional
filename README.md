@@ -18,8 +18,9 @@ Note2:`\n` - shielding line break
 #### 1.2. From  Sandbox API reference  
 1) `pm.response.to.have.body()` - test that response have a body
 #### 1.3. From Chai.js
-1) `pm.expect(pm.response.text()).to.equal("string")`  === ( not child objects)
-2) `pm.expect(pm.response.text()).to.deep.equal("string")`  (equivalent to eql) === (with child objects)
+1) `pm.expect(pm.response.text()).to.equal("string")`  === ( not child objects, test a value (property, number, string), not useful for objects, arrays)
+Note: `equal` is equivalent to `equals`
+2) `pm.expect(pm.response.text()).to.deep.equal("string")`  (equivalent to `eql` and to `eqls`) === (can test full structure: child objects)
 3) `pm.expect(pm.response.text()).to.be.a("string")`   - this is a string, not number
 4) `pm.expect(pm.response.text()).to.be.an("string")`  - this is a string, not number
 5) `pm.expect(pm.response.text() == "string").to.be.true`  - boolean
@@ -42,36 +43,42 @@ pm.test("assert", function () {
      assert.ok.(pm.response.text() == "string_you_want_to_search");
  });
 ```
+Note: not strict
 2)
 ```
 pm.test("assert", function () {
      assert(pm.response.text() === "string_you_want_to_search");
  })
 ```
+Note:  strict
 3)
 ```
 pm.test("assert", function () {
      assert.deepEqual(pm.response.text(),"string_you_want_to_search");
  })
 ```
+Note: not strict, use in child objects
 4)
 ```
 pm.test("assert", function () {
      assert.deepStrictEqual(pm.response.text(),"string_you_want_to_search");
  })
 ```
+Note: strict, use in child objects
 5)
 ```
 pm.test("assert", function () {
      assert.equal(pm.response.text(),"string_you_want_to_search");
  })
 ```
+Note: not strict, not use in child objects
 6)
 ```
 pm.test("assert", function () {
      assert.strictEqual(pm.response.text(),"string_you_want_to_search");
  })
 ```
+Note: strict, not use in child objects
 ### 2. Tests for the body: JSON
 #### 2.1. From Postman snippets
 1)
@@ -81,6 +88,7 @@ pm.test("Your test name", function () {
      pm.expect(jsonData.value).to.eql(100);
 });
 ```
+or `to.eql("string")`
 2)
 ```
 pm.test("Body is correct", function () {
@@ -98,5 +106,44 @@ pm.test("Body is correct", function () {
 pm.test("Body matches string", function () {
      pm.expect(pm.response.text()).to.include("string_you_want_to_search");
  });
+```
 #### 2.2. From  Sandbox API reference  
-1) `pm.response.to.have.jsonbody('')` - test that response have a json body
+1) `pm.response.to.have.jsonbody({jsonobject})` - test that response have a json body
+2) `pm.response.to.not.have.jsonbody({jsonobject})` - test that response not have a json body
+#### 2.3. From Chai.js
+1)eql,deep.equal,equal(see response.text)
+```
+pm.test("Your test name", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData.).to.eql({
+     key: "value";
+     key:"value"});
+});
+```
+2) include, deep.include
+include tests that a part of a string, object , array is equal to smth:
+```
+var jsonData = pm.response.json();
+pm.test("Body matches string", function () {
+     pm.expect(jsonData.value).to.include("string_you_want_to_search");
+ });
+ ```
+ or search a part of object:
+ ```
+ var jsonData = pm.response.json();
+pm.test("Body matches string", function () {
+     pm.expect(jsonData.value).to.include({key="value"});
+ });
+ ```
+deep.include tests the whole structure:
+ ```
+ var jsonData = pm.response.json();
+pm.test("Body matches string", function () {
+     pm.expect(jsonData.value).to.deep.include({key="value"});
+ });
+ ```
+ 3)nested.include: for child objects
+ {a:{b:['x','y']}}
+ pm.expect(jsonData.a.b[1]).to.include('y');
+ or
+ pm.expect(jsonData.to.nested.include({'a.b[1]':'y'})
