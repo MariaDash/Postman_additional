@@ -379,3 +379,31 @@ pm.test("test order", function () {
 ```
 ### 4. Tests for the body : string in JSON (Chai.js)
 ```
+pm.expect(pm.response.json()).to.be.a("string");
+pm.expect(pm.response.json()).to.equal("error");
+pm.expect(pm.response.json()).to.include("rr");
+pm.expect(pm.response.json().name).to.have.lengthOf(33);
+pm.expect(pm.response.json().name).to.have.lengthOf.above(33);
+pm.expect(pm.response.json().message === 'Success!').to.be.ok;
+pm.expect(pm.response.json().message === 'Success!').to.be.true;
+pm.expect(pm.response.json().name).to.not.be.null;
+pm.expect(pm.response.json().name).to.not.be.empty;
+pm.expect(pm.response.json().name).to.exist;
+```
+### 5. Tests for the body : number in JSON (Chai.js)
+```
+pm.expect(pm.response.json().task).to.be.a("number");
+pm.expect(pm.response.json().task).to.equal("100");
+~~pm.expect(pm.response.json().task).to.include("99");~~ pm.expect(pm.response.json().task).to.be.oneOf([200,201,202]);
+pm.expect(pm.response.json().task).to.be.below(99);
+pm.expect(pm.response.json().task).to.be.above(99);
+num=jsonData.task;
+pm.expect(num===33).to.be.ok;
+pm.expect(num===33).to.be.true;
+pm.expect(num=='33').to.be.ok;
+pm.expect(num=='33').to.be.true;
+pm.expect(num).to.not.be.null;
+pm.expect(num).to.not.be.empty;
+pm.expect(num).to.not.be.undefined;
+pm.expect(num).to.not.be.NaN;
+pm.expect(num).to.exist;
