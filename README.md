@@ -394,7 +394,9 @@ pm.expect(pm.response.json().name).to.exist;
 ```
 pm.expect(pm.response.json().task).to.be.a("number");
 pm.expect(pm.response.json().task).to.equal("100");
-~~pm.expect(pm.response.json().task).to.include("99");~~ pm.expect(pm.response.json().task).to.be.oneOf([200,201,202]);
+~~pm.expect(pm.response.json().task).to.include("99");~~ 
+
+pm.expect(pm.response.json().task).to.be.oneOf([200,201,202]);
 pm.expect(pm.response.json().task).to.be.below(99);
 pm.expect(pm.response.json().task).to.be.above(99);
 num=jsonData.task;
@@ -407,3 +409,163 @@ pm.expect(num).to.not.be.empty;
 pm.expect(num).to.not.be.undefined;
 pm.expect(num).to.not.be.NaN;
 pm.expect(num).to.exist;
+```
+### 6. Tests for the body : JSON (Node.js)
+1)
+```
+jsonData = pm.response.json();
+const assert = require('assert');
+pm.test('Test assert.ok', funcion ()  {
+    assert.ok(jsonData.message == 'Registration completed!'); });
+```
+Note:  not strict
+2)
+```
+pm.test("assert", function () {
+     assert.(jsonData.message === 'Registration completed!'); });
+ })
+```
+Note:  strict
+3)
+```
+pm.test("assert", function () {
+     assert.deepEqual(jsonData.message,'Registration completed!');
+ })
+```
+Note: not strict, use in child objects
+4)
+```
+pm.test("assert", function () {
+     assert.deepStrictEqual(jsonData.message,'Registration completed!');
+ })
+```
+Note: strict, use in child objects
+5)
+```
+pm.test("assert", function () {
+     assert.equal(jsonData.message,'Registration completed!');
+ })
+```
+Note: not strict, not use in child objects
+6)
+```
+pm.test("assert", function () {
+     assert.strictEqual(jsonData.message,'Registration completed!');
+ })
+```
+Note: strict, not use in child objects.
+or
+```
+pm.test("assert", function () {
+     assert.strictEqual(jsonData.message,{
+     message:'Registration completed'
+     }
+     )});
+```
+### 7. Tests for the body: XML (Postman)
+```
+var jsonData = xml2Json(responseBody);
+pm.test("Your test name", function () {
+     pm.expect(jsonData).to.include({
+     key: 'value1';
+     key2:'value2';});
+ })
+```
+### 8. Test on headers (Postman)
+1)
+```
+ pm.test("Content-Type is present", function () {
+     pm.response.to.have.header("Content-Type");
+ });
+ ```
+ or
+ ```
+ pm.test("Content-Type is present", function () {
+     pm.response.to.have.header("Content-Type". 'application/json');
+ });
+ ```
+ 2)
+ ```
+ pm.test("Body matches string", function () {
+     pm.expect(pm.response.headers).to.include("string_you_want_to_search");
+ });
+ ```
+3)
+ ```
+ console.log(pm.response.headers.contentSize());
+```
+ 4)
+ ```
+  pm.test("Body matches string", function () {
+     pm.expect(pm.response.headers.count()).to.eql(9);
+ });
+
+ ```
+
+5) high priority
+```
+ pm.test("Body matches string", function () {
+     pm.expect(pm.response.headers.get("Cache-Control")).to.include('no-cache');
+ });
+
+```
+6)
+```
+ pm.test("Body matches string", function () {
+     pm.expect(pm.response.headers.has("Content-Type88")).to.be.true;
+ });
+ ```
+ or
+ ```
+  pm.test("Body matches string", function () {
+     pm.expect(pm.response.headers.has("Content-Type88", 'application/json')).to.be.true;
+ });
+ ```
+ 7)
+ ```
+ pm.test("Body matches string", function () {
+     pm.expect(pm.response.headers.idx(7).key).to.eql("Cache-Control");
+ });
+ ```
+ 7)
+ ```
+ pm.test("Body matches string", function () {
+     pm.expect(pm.response.headers.indexOf('Cache-Control')).to.eql(7);
+ });
+```
+ ### 9. Test on Cookies (Postman)
+1)
+```
+ pm.test("Body matches string", function () {
+     pm.expect(pm.cookies.has(cookieName:String)).to.be.true;
+ });
+ ```
+2)
+```
+pm.test("Body matches string", function () {
+     pm.expect(pm.cookies.count()).to.eql(9);
+ });
+```
+3) high priority
+```
+ pm.test("Body matches string", function () {
+     pm.expect(pm.cookies.get(cookieName:String)).to.eql('string');
+ });
+```
+4)
+```
+pm.test("Body matches string", function () {
+     pm.expect(pm.cookies.has(cookieName:String, 'value')).to.be.true;
+ });
+ ```
+5)
+```
+pm.test("Body matches string", function () {
+     pm.expect(pm.cookies.idx(0).value).to.eql('string')
+ });
+```
+6)
+```
+pm.test("Body matches string", function () {
+     pm.expect(pm.cookies.idexOf(cookieName:String)).to.eql(0)
+ });
