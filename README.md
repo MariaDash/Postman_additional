@@ -1,6 +1,6 @@
 # Some additional  Postman/Javascript tests scripts
 ## Tests  for the response from the server
-### 1.Tests for the body:Text
+### 1.Tests for the body: Text
 #### 1.1. From Postman snippets
 1) `to.have.body ===` test whole string
 ```pm.test("Body is correct", function () {
@@ -35,5 +35,43 @@ Note2:`\n` - shielding line break
 15) `pm.expect(pm.response.text()).to.match(/^string/)`  test matching with use of regexp
 16) `pm.expect(pm.response.text()).to.have.string("string")` === test we have string
 #### 1.4. From Node.js
-1) const assert = require("assert");
+1) `const assert = require("assert");`   - downloading assertion library
+
+```
+pm.test("assert", function () {
+     assert.ok.(pm.response.text() == "string_you_want_to_search");
+ });
+```
+2)
+```
+pm.test("assert", function () {
+     assert(pm.response.text() === "string_you_want_to_search");
+ })
+```
+3)
+```
+pm.test("assert", function () {
+     assert.deepEqual(pm.response.text(),"string_you_want_to_search");
+ })
+```
+4)
+```
+pm.test("assert", function () {
+     assert.deepStrictEqual(pm.response.text(),"string_you_want_to_search");
+ })
+```
+5)
+```
+pm.test("assert", function () {
+     assert.equal(pm.response.text(),"string_you_want_to_search");
+ })
+```
+6)
+```
+pm.test("assert", function () {
+     assert.strictEqual(pm.response.text(),"string_you_want_to_search");
+ })
+```
+### 2. Tests for the body: JSON
+#### 2.1. From Postman snippets
 
