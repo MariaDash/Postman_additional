@@ -18,18 +18,19 @@ Note2:`\n` - shielding line break
 #### 1.2. From  Sandbox API reference  
 1) `pm.response.to.have.body()` - test that response have a body
 #### 1.3. From Chai.js
-1) pm.expect(pm.response.text()).to.equal("string")
-2) pm.expect(pm.response.text()).to.deep.equal("string")
-3) pm.expect(pm.response.text()).to.be.a("string")
-4) pm.expect(pm.response.text()).to.be.an("string")
-5) pm.expect(pm.response.text() == "string").to.be.true
-6) pm.expect(pm.response.text() === "string").to.be.true
-7) pm.expect(pm.response.text() == "string").to.be.ok
-8) pm.expect(pm.response.text() === "string").to.be.ok
-9) pm.expect(pm.response.text()).to.have.lengthOf(30)
-10) pm.expect(pm.response.text()).to.have.lengthOf.above(20)
-11) pm.expect(pm.response.text()).to.have.lengthOf.at.least(200)
-12) pm.expect(pm.response.text()).to.exist
-13) pm.expect(pm.response.text()).to.not.be.empty
-14) pm.expect(pm.response.text()).to.match(/^string/)
-15) pm.expect(pm.response.text()).to.have.string("string")
+1) `pm.expect(pm.response.text()).to.equal("string")`  === ( not child objects)
+2) `pm.expect(pm.response.text()).to.deep.equal("string")`  (equivalent to eql) === (with child objects)
+3) `pm.expect(pm.response.text()).to.be.a("string")`   - this is a string, not number
+4) `pm.expect(pm.response.text()).to.be.an("string")`  - this is a string, not number
+5) `pm.expect(pm.response.text() == "string").to.be.true`  - boolean
+6) `pm.expect(pm.response.text() === "string").to.be.true`   - strict boolean
+7) `pm.expect(pm.response.text() == "string").to.be.ok`   - boolean
+8) `pm.expect(pm.response.text() === "string").to.be.ok`   - strict boolean
+9) `pm.expect(pm.response.text()).to.have.lengthOf(30)`   - test length
+10) `pm.expect(pm.response.text()).to.have.lengthOf.above(20)`  - test that length is more than mentioned
+11) `pm.expect(pm.response.text()).to.have.lengthOf.at.least(200)` - test that length is more or equal than mentioned
+12) `pm.expect(pm.response.text()).to.have.lengthOf.at.most(200)` - test that length is less or equal than mentioned
+13) `pm.expect(pm.response.text()).to.exist` - test that the text exists
+14) `pm.expect(pm.response.text()).to.not.be.empty`  - test that the text is not empty
+15) `pm.expect(pm.response.text()).to.match(/^string/)`  test matching with use of regexp
+16) `pm.expect(pm.response.text()).to.have.string("string")` === test we have string
