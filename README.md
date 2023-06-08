@@ -569,3 +569,113 @@ pm.test("Body matches string", function () {
 pm.test("Body matches string", function () {
      pm.expect(pm.cookies.idexOf(cookieName:String)).to.eql(0)
  });
+```
+## 2.Reserved symbols:
+```
+Code	Result
+\b	Backspace
+\f	Form Feed
+\n	New Line
+\r	Carriage Return
+\t	Horizontal Tabulator
+\v	Vertical Tabulator
+```
+## 3. Strings
+var  x= 'Mariia'
+### 1) `length`:
+var txt = 'Very long string'
+var ln = txt.length
+
+pm.test("length 5", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.type.length).to.eql(5);
+});
+
+### 2)`indexOf` cannot use regexp
+```
+var txt = 'I want to go to the sea, to the sea I want to go'
+txt.indexOf('sea')
+console: number
+```
+if there is no match , then console: - 1
+`lastIndexOf`
+`txt.lastIndexOf('sea')`
+`txt.lastIndexOf('sea', 15)` -incluse start position for search
+
+### 4. `search` cannot use start position argument but can use regexp
+`txt.search('sea')`
+
+### 5. `slice` 
+```
+var fruits = 'apple, mango, peach';
+fruits.slice(8,13) 
+```
+here start position is included and stop position is not included
+`fruits.slice(-13,-8)` reversed slice
+always use console
+`fruits.slice (8)`
+`fruits.slice(-13)`
+from start position to the end
+### 6. `substring ` dont use negative numbers as arguments
+```
+var fruits = 'apple, mango, peach';
+fruits.substring(8,13)
+```
+and ` substr`
+```
+var fruits = 'apple, mango, peach';
+fruits.substr(8,5)
+```
+Here second argument is not stop position, it is length
+`fruits.substr(-13,5)`
+`fruits.substr(-13,-5)` - not working
+### 7. changing part of a string  by `replace`
+`Replace` changing only one match
+```
+txt = "Hello, Anonimus!";
+txt2 = txt.replace('Anonimus", "Kate")
+console.log(txt2)
+```
+or 
+case insensitive
+```
+txt = "Hello, Anonimus! Anonimus, right?";
+txt2 = txt.replace('/ANONIMUS/i", "Kate")
+console.log(txt2)
+``
+or for two words:
+```
+txt = "Hello, Anonimus Anonim!";
+txt2 = txt.replace('/ANONIMUS ANONIM/i", "Kate")
+console.log(txt2)
+```
+or global(all replacement)
+```
+txt = "Hello, Anonimus! Anonimus, right?";
+txt2 = txt.replace('/Anonimus/g", "Kate")
+console.log(txt2)
+```
+### 8. Changing registr in the string
+```
+var text1 = "Hello World!";
+ver text2 = text1.toUpperCase();
+console.log(text2);
+HELLO WORLD!
+```
+or
+```
+var text1 = "Hello World!";
+ver text2 = text1.toLowerCase();
+console.log(text2);
+hello world!
+```
+### 9. 'gluing` two strings 
+with `+`
+```
+txt1 = "Sea";
+txt2 = "wind";
+txt3 = txt1 + ""+ txt2
+Sea wind
+```
+
+
