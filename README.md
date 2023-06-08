@@ -706,7 +706,7 @@ console.log(cat.split("");
 ["K", "i", "t", "t", "y"]
 ```
 ## 4. Methods for Numbers
-`toString`
+### 1) `toString`
 ```
 x= 123;
 y = x.toString();
@@ -714,6 +714,8 @@ console.log(x);
 console.log("x===y " +  Boolean(x===y));
 ```
 this `y` you can compare to another string by ===.
-
-
+### 2) convert string to number( global js-methods)
+The `Number()` method
+The `parseInt()` method
+The `parseFloat()` method
 
