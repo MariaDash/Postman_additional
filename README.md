@@ -748,3 +748,15 @@ console.log(parseFloat(true));    // returns NaN
 console.log(parseFloat(false));    // returns NaN
 ```
 ## 5. Methods for arrays in JS
+```
+var nums = new Array(1,2,3);
+var nums = [1,2,3]; //literal syntaxis
+```
+### length:
+```
+fruits = ["apple, "banana', "orange","pear", "plum", "pineapple"];
+fruits.length; // 6
+pineapple = fruits[fruits.length -1];
+console.log("Last element of array: " + pineapple);
+```
+### adding elements to array
