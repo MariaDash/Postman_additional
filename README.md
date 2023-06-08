@@ -706,5 +706,14 @@ console.log(cat.split("");
 ["K", "i", "t", "t", "y"]
 ```
 ## 4. Methods for Numbers
+`toString`
+```
+x= 123;
+y = x.toString();
+console.log(x);
+console.log("x===y " +  Boolean(x===y));
+```
+this `y` you can compare to another string by ===.
+
 
 
