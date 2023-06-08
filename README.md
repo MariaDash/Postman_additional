@@ -668,7 +668,7 @@ ver text2 = text1.toLowerCase();
 console.log(text2);
 hello world!
 ```
-### 9. 'gluing` two strings 
+### 9. 'glueing` two strings 
 with `+`
 ```
 txt1 = "Sea";
@@ -760,3 +760,152 @@ pineapple = fruits[fruits.length -1];
 console.log("Last element of array: " + pineapple);
 ```
 ### adding elements to array
+`push` to the end of array
+```
+fruits = ["banana", "orange"];
+fruits.push("pear");
+// ["banana", "orange", "pear"]
+```
+and
+```
+fruits = ["banana", "orange"];
+x = fruits.push("pear");
+// x = 3
+```
+`x[x.length]` to the end of array
+```
+fruits = ["banana", "orange"];
+fruits[fruits.length] = "pear";
+// ["banana", "orange", "pear"]
+```
+`unshift()` to the beginning of the array
+```
+fruits = ["banana", "orange"];
+fruits.unshift("pear");
+// ["pear", "banana", "orange"]
+```
+`splice` adding and deleting elements in any part of array (defining start position(2) and number of deleting objects(0))
+```
+fruits = ["apple", "banana", "pear"];
+fruits.splice(2,0,"lemon", "orange");
+// ["apple", "banana", "pear", "lemon", "orange"]
+```
+Note: we cannot create a new variable with this? `splice` will rewrite the array.
+if we want to delete one element ("pear") and add other elements:
+```
+fruits = ["apple", "banana", "pear", "mango"];
+fruits.splice(2,1,"lemon", "orange");
+// ["apple", "banana", "lemon", "orange", "mango"]
+```
+### editing elements in array
+```
+fruits = ["apple", "banana", "pear", "mango"];
+fruits[0] = "kiwi";
+// ["kiwi", "banana", "pear", "mango"];
+```
+### deleting element from array
+`pop()` deleting the last element of array
+```
+fruits = ["apple", "banana", "pear"];
+fruits.pop();
+// ["apple", "banana"]
+x = fruits.pop();
+// x = "pear"
+```
+`shift()` deleteng the first element
+```
+fruits = ["apple", "banana", "pear"];
+fruits.shift();
+// ["banana", "pear"]
+x = fruits.shift();
+// x = "apple"
+```
+`delete` deleting element in the middle it delets the element but left undefined instead
+```
+fruits = ["apple", "banana", "pear"];
+delete fruits[1];
+// ["apple", undefined, "pear"]
+```
+`splice` defining start pisition and how many elements to delete
+```
+fruits = ["apple", "banana", "pear"];
+fruits.splice(0,1);
+// ["banana", "pear"]
+```
+we can delete as many elements as we want
+```
+fruits = ["apple", "banana", "pear"];
+fruits.splice(0,2);
+// ["pear"]
+```
+### transform array into a string ( separeter is comma)
+`toString()`
+```
+fruits = ["apple", "banana", "pear"];
+y = fruits.toString();
+// apple,banana,pear
+```
+`join()` we define separeter
+```
+fruits = ["apple", "banana", "pear"];
+y = fruits.join(", ");
+// apple, banana, pear
+```
+or
+```
+fruits = ["apple", "banana", "pear"];
+y = fruits.join(" * ");
+// apple * banana * pear
+```
+### Union of arrays
+```
+fruits1 = ["apple", "banana"];
+fruits2 = ["pear", "kiwi"];
+fruits = fruits1.concat(fruits2);
+//["apple", "banana","pear", "kiwi"];
+```
+or
+```
+fruits1 = ["apple", "banana"];
+fruits2 = ["pear", "kiwi"];
+fruits3 = ["mango", "orange"];
+fruits = fruits1.concat(fruits2, fruits3);
+//["apple", "banana","pear", "kiwi", "mango", "orange"];
+```
+or
+```
+fruits1 = ["apple", "banana"];
+fruits = fruits1.concat(["pear", "kiwi"]);
+//["apple", "banana","pear", "kiwi"];
+```
+### copy a part of array (1 element included, last element not included)
+```
+fruits = ["apple", "orange","lemon", "kiwi"];
+citrus = fruits.slice(1,3);
+// ["orange","lemon"]
+```
+or
+```
+fruits = ["apple", "orange","lemon", "kiwi"];
+citrus = fruits.slice(1);
+// ["orange","lemon", "kiwi"];
+```
+### sorting the array
+`sort`
+```
+fruits = ["apple", "orange","lemon", "kiwi"];
+fruits.sort();
+// ["apple", "kiwi","lemon","orange"];
+```
+or 
+```
+fruits = ["apple", "orange","lemon", "kiwi"];
+fruits.sort();
+fruits.reverse();
+// ["orange", "lemon", "kiwi", "apple"];
+```
+
+## 6. Methods for dates
+
+
+
