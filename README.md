@@ -906,6 +906,36 @@ fruits.reverse();
 ```
 
 ## 6. Methods for dates
+```
+ var jsonData = pm.response.json();
+data_for_test = new Date(jsonData.fields.)
+date_result = new Date(2023, 5,8);
+date_test_1 = date_result.toDateString();
+date_test_2 = date_for_test.toDateString();
+pm.test("Your test name", function () {
+   
+    pm.expect(date_test_1).to.eql(date_test_2);
+});
+```
+also use
+`getFullYear()`
+`getMonth()`
+## 7. Mathematic functions in JS
+### Math.random
 
+`x = Math.random();`
+`x = Math.random()*11;` will output random NOT integer number from 0 to 10
+`x = Math.floor(Math.random() * 11);` will output random integer number from 0 to 10 ( it will not round but it will cut the float part)
+### Math.min
+```
+Math.min(0, 150, 30, 20, -8, -200);
+// returns -200
+```
+### Math.max
+```
+Math.max(0, 150, 30, 20, -8, -200);
+// returns 150
+```
+### example of complicated test
 
 
