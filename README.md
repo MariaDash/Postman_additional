@@ -719,3 +719,32 @@ The `Number()` method
 The `parseInt()` method
 The `parseFloat()` method
 
+#### 2)1). returnings of function `Number()`
+
+```
+console.log(Number(true));     // returns 1
+console.log(Number(false));    // returns 0
+console.log(Number("10"));     // returns 10
+console.log(Number(" 10"));     // returns 10
+console.log(Number("10 "));     // returns 10
+console.log(Number(" 10 "));     // returns 10
+console.log(Number("10.33"));     // returns 10.33
+console.log(Number("10,33"));    // returns NaN
+console.log(Number("10 33"));    // returns NaN
+console.log(Number("John"));    // returns NaN
+console.log(Number(new Date("2017-09-30")));  
+//1506729600000 ( method will count ms started from 01.01.1970)
+```
+#### 2)2) `parseInt("10.33");
+```
+//10
+console.log(parseInt(true));    // returns NaN
+console.log(parseInt(false));    // returns NaN
+```
+#### 2)3) `parseFloat("10.33")`
+```
+//10.33
+console.log(parseFloat(true));    // returns NaN
+console.log(parseFloat(false));    // returns NaN
+```
+## 5. Methods for arrays in JS
