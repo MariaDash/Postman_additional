@@ -580,7 +580,7 @@ Code	Result
 \t	Horizontal Tabulator
 \v	Vertical Tabulator
 ```
-## 3. Strings
+## 3. Methods for Strings
 var  x= 'Mariia'
 ### 1) `length`:
 var txt = 'Very long string'
@@ -636,13 +636,12 @@ txt = "Hello, Anonimus!";
 txt2 = txt.replace('Anonimus", "Kate")
 console.log(txt2)
 ```
-or 
-case insensitive
+or case insensitive
 ```
 txt = "Hello, Anonimus! Anonimus, right?";
 txt2 = txt.replace('/ANONIMUS/i", "Kate")
 console.log(txt2)
-``
+```
 or for two words:
 ```
 txt = "Hello, Anonimus Anonim!";
@@ -677,5 +676,35 @@ txt2 = "wind";
 txt3 = txt1 + ""+ txt2
 Sea wind
 ```
+with `concat()`
+```
+txt1 = "Sea";
+txt2 = "wind";
+txt3 = txt1.concat(""+ txt2);
+Sea wind
+```
+### 10. Deleting redundant spaces in the string (in the start of the string and in the end)
+```
+txt = "  Sea wind  ";
+console.log(txt1.trim());
+Sea wind
+```
+### 11. Dividing to parts
+```
+fruits = "Apple, pineapple, coconut";
+fruits.split(",");
+```
+`split()` is transforming string to a array ==>
+
+`["Apple"," pineapple"," coconut"]` then we need to trim it from extra spaces
+or we can do split another way( include there extra spaces):
+`fruits.split(", ");`
+example:
+```
+cat = "Kitty";
+console.log(cat.split("");
+["K", "i", "t", "t", "y"]
+```
+## 4. Methods for Numbers
 
 
