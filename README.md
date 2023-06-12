@@ -3,7 +3,8 @@
 ### 1.Tests for the body: Text
 #### 1.1. From Postman snippets
 1) `to.have.body ===` test whole string
-```pm.test("Body is correct", function () {
+```
+pm.test("Body is correct", function () {
      pm.response.to.have.body("response_body_string");
  });
 ```
