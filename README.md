@@ -8,8 +8,11 @@
  });
 ```
 Note1: everytime break your test to test them.
+
 Note2:`\n` - shielding line break
+
 2) `to.include ==` test partially
+3) 
 ```
  pm.test("Body matches string", function () {
      pm.expect(pm.response.text()).to.include("string_you_want_to_search");
