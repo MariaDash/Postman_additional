@@ -119,7 +119,7 @@ pm.test("Body matches string", function () {
 ```
 pm.test("Your test name", function () {
      var jsonData = pm.response.json();
-     pm.expect(jsonData.).to.eql({
+     pm.expect(jsonData.value).to.eql({
      key: "value";
      key:"value"});
 });
