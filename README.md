@@ -44,7 +44,7 @@ Note: `equal` is equivalent to `equals`
 
 ```
 pm.test("assert", function () {
-     assert.ok.(pm.response.text() == "string_you_want_to_search");
+     assert.ok(pm.response.text() == "string_you_want_to_search");
  });
 ```
 Note: not strict
