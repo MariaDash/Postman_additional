@@ -271,7 +271,7 @@ function Cat (name, year){
     //sleeping code
     }
 }
-var kitty - new Cat('Kitty',1);
+var kitty = new Cat('Kitty',1);
 ```
 `.instanceOf` check that `kitty` was made from constructor `Cat`
 
